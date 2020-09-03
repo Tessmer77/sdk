@@ -67,8 +67,6 @@ namespace Microsoft.NET.TestFramework
 
         public string SdkResolverPath { get; set; }
 
-        public bool ShouldUseSdkResolverPath { get; set; }
-
         public ToolsetInfo(string dotNetRoot)
         {
             DotNetRoot = dotNetRoot;
@@ -148,10 +146,9 @@ namespace Microsoft.NET.TestFramework
 
         public void AddTestEnvironmentVariables(SdkCommandSpec command)
         {
-            if (ShouldUseFullFrameworkMSBuild && !ShouldUseSdkResolverPath)
+            if (ShouldUseFullFrameworkMSBuild)
             {
                 string sdksPath = Path.Combine(DotNetRoot, "sdk", SdkVersion, "Sdks");
-                command.Environment["DOTNET_MSBUILD_SDK_RESOLVER_SDKS_DIR"] = sdksPath;
 
                 if (!string.IsNullOrEmpty(MicrosoftNETBuildExtensionsPathOverride))
                 {
