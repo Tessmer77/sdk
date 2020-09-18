@@ -44,11 +44,6 @@ namespace Microsoft.NET.TestFramework.Assertions
         public AndWhichConstraint<FileInfoAssertions, DateTimeOffset> HaveLastWriteTimeUtc(string because = "", params object[] reasonArgs)
         {
             var lastWriteTimeUtc = _fileInfo.LastWriteTimeUtc;
-
-            Execute.Assertion
-                .ForCondition(lastWriteTimeUtc != null)
-                .BecauseOf(because, reasonArgs) 
-                .FailWith($"Expected File {_fileInfo.FullName} to have a LastWriteTimeUTC, but it is null.");
             return new AndWhichConstraint<FileInfoAssertions, DateTimeOffset>(this, lastWriteTimeUtc);
         }
     }
